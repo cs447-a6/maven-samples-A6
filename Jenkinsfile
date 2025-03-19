@@ -9,9 +9,11 @@ pipeline {
 
     stage('run') {
       steps {
-        def status = sh(script: 'mvn clean test', returnStatus: true)
-        if (status != 0) {
-          currentBuild.result = 'UNSTABLE'
+        script {
+          def status = sh(script: 'mvn clean test', returnStatus: true)
+          if (status != 0) {
+            currentBuild.result = 'UNSTABLE'
+          }
         }
       }
     }
